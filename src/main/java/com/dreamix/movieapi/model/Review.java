@@ -17,7 +17,6 @@ public class Review {
     private long id;
     private double rating;
     private String description;
-    private long movieId;
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = true)
     private Movie movie;
