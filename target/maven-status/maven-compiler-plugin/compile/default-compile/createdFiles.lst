@@ -1,0 +1,6 @@
+com\dreamix\movieapi\model\User.class
+com\dreamix\movieapi\model\Genre.class
+com\dreamix\movieapi\model\Review.class
+com\dreamix\movieapi\model\Movie.class
+com\dreamix\movieapi\model\Actor.class
+com\dreamix\movieapi\MovieApiApplication.class

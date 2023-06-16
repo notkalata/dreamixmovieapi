@@ -20,6 +20,6 @@ public class Genre {
     private String description;
     @ManyToMany(mappedBy = "genres")
     private Set<Movie> movies;
-    @ManyToMany(mappedBy = "likedGenres")
+    @ManyToMany(mappedBy = "favouriteGenres")
     private Set<User> users;
 }

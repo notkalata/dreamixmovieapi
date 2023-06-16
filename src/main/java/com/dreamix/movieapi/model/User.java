@@ -21,9 +21,9 @@ public class User {
     private String lastName;
     @ManyToMany
     @JoinTable(
-            name = "liked_genres",
+            name = "favourite_genres",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private Set<Genre> likedGenres;
+    private Set<Genre> favouriteGenres;
 }
