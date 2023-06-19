@@ -12,10 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Genre {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Genre extends BaseModel {
     private String name;
     private String description;
     @ManyToMany(mappedBy = "genres")
