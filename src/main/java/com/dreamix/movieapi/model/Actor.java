@@ -20,7 +20,6 @@ public class Actor extends BaseModel {
     private int age;
     @ManyToMany(mappedBy = "actors")
     private Set<Movie> movies;
-
     public Actor(String firstName, String lastName, int age){
         this.firstName = firstName;
         this.lastName = lastName;

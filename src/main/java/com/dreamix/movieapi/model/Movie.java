@@ -18,6 +18,8 @@ public class Movie extends BaseModel {
     private String title;
     private String description;
     private int runtime;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<Review> reviews;
     @ManyToMany
     @JoinTable(
             name = "movie_actors",
@@ -25,8 +27,6 @@ public class Movie extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "actor_id")
     )
     private Set<Actor> actors;
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private Set<Review> reviews;
     @ManyToMany
     @JoinTable(
             name = "movie_genres",
@@ -34,7 +34,6 @@ public class Movie extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> genres;
-
     public Movie(String title, String description, int runtime) {
         this.title = title;
         this.description = description;
