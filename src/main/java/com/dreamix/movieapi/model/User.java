@@ -18,6 +18,8 @@ public class User extends BaseModel {
     private String username;
     private String firstName;
     private String lastName;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Review> reviews;
     @ManyToMany
     @JoinTable(
             name = "favourite_genres",
