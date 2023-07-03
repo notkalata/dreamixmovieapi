@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
-@Entity(name =  "genre")
+@Entity
 @Table(name = "genres")
 @Data
 @EqualsAndHashCode(callSuper = false)

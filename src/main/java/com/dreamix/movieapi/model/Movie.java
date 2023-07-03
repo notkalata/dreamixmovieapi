@@ -1,5 +1,6 @@
 package com.dreamix.movieapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name = "movie")
+@Entity
 @Table(name = "movies")
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -20,6 +21,7 @@ public class Movie extends BaseModel {
     private int runtime;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private Set<Review> reviews;
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "movie_actors",
