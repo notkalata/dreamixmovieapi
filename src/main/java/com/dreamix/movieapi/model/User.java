@@ -16,6 +16,8 @@ import java.util.Set;
 @AllArgsConstructor
 public class User extends BaseModel {
     private String username;
+    private String password;
+    private String email;
     private String firstName;
     private String lastName;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -27,9 +29,4 @@ public class User extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> favouriteGenres;
-    public User(String username, String firstName, String lastName) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }

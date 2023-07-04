@@ -1,5 +1,6 @@
 package com.dreamix.movieapi.model;
 
+import com.dreamix.movieapi.dto.MovieDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,9 +37,9 @@ public class Movie extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> genres;
-    public Movie(String title, String description, int runtime) {
-        this.title = title;
-        this.description = description;
-        this.runtime = runtime;
+    public Movie(MovieDTO movieDTO){
+        title = movieDTO.getTitle();
+        description = movieDTO.getDescription();
+        runtime = movieDTO.getRuntime();
     }
 }

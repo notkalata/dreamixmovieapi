@@ -23,8 +23,4 @@ public class Genre extends BaseModel {
     private Set<Movie> movies;
     @ManyToMany(mappedBy = "favouriteGenres")
     private Set<User> users;
-    public Genre(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 }

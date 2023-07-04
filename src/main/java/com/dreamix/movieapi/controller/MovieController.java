@@ -7,31 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
     @Autowired
     private MovieService movieService;
-
     @GetMapping("/{id}")
-    public Movie getMovie(@PathVariable long id){
-        return movieService.getMovie(id);
+    public MovieDTO getMovie(@PathVariable long id){
+        return new MovieDTO(movieService.getMovie(id));
     }
-
     @GetMapping("/all")
     public List<MovieDTO> getAllMovies(){
-        return movieService.getAllMovies();
+        return movieService.getAllMovies().stream().map(MovieDTO::new).collect(Collectors.toList());
     }
-
     @PostMapping("/add")
-    public Movie addRecord(@RequestBody Movie movie){
-        return movieService.addRecord(movie);
+    public MovieDTO addRecord(@RequestBody MovieDTO movieDTO){
+        return new MovieDTO(movieService.addRecord(movieDTO));
     }
-
     @PutMapping("/update")
-    public Movie updateRecord(@RequestBody Movie movie){
-        return movieService.updateRecord(movie);
+    public MovieDTO updateRecord(@RequestBody Movie movie){
+        return new MovieDTO(movieService.updateRecord(movie));
     }
     @DeleteMapping("/delete/{id}")
     public void deleteRecord(@PathVariable long id){

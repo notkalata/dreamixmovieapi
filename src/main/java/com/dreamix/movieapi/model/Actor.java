@@ -24,9 +24,4 @@ public class Actor extends BaseModel {
     @JsonIgnore
     @ManyToMany(mappedBy = "actors")
     private Set<Movie> movies;
-    public Actor(String firstName, String lastName, int age){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
 }

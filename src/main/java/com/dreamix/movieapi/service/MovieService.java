@@ -16,19 +16,16 @@ public class MovieService {
     public Movie getMovie(long id){
         return movieRepository.findById(id);
     }
-    public List<MovieDTO> getAllMovies(){
-            return movieRepository.findAll().stream().map(this::entityToDTO).collect(Collectors.toList());
+    public List<Movie> getAllMovies(){
+            return movieRepository.findAll();
     }
-    public Movie addRecord(Movie movie){
-        return movieRepository.create(movie);
+    public Movie addRecord(MovieDTO movieDTO){
+        return movieRepository.create(new Movie(movieDTO));
     }
     public Movie updateRecord(Movie movie){
         return movieRepository.update(movie);
     }
     public void deleteRecord(long id){
         movieRepository.delete(id);
-    }
-    public MovieDTO entityToDTO(Movie movie){
-        return new MovieDTO(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getRuntime());
     }
 }
