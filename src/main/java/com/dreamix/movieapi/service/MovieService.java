@@ -19,8 +19,8 @@ public class MovieService {
     public List<Movie> getAllMovies(){
             return movieRepository.findAll();
     }
-    public Movie addRecord(MovieDTO movieDTO){
-        return movieRepository.create(new Movie(movieDTO));
+    public Movie addRecord(Movie movie){
+        return movieRepository.create(movie);
     }
     public Movie updateRecord(Movie movie){
         return movieRepository.update(movie);

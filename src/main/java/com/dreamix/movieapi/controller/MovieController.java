@@ -23,8 +23,8 @@ public class MovieController {
         return movieService.getAllMovies().stream().map(MovieDTO::new).collect(Collectors.toList());
     }
     @PostMapping("/add")
-    public MovieDTO addRecord(@RequestBody MovieDTO movieDTO){
-        return new MovieDTO(movieService.addRecord(movieDTO));
+    public MovieDTO addRecord(@RequestBody Movie movie){
+        return new MovieDTO(movieService.addRecord(movie));
     }
     @PutMapping("/update")
     public MovieDTO updateRecord(@RequestBody Movie movie){
