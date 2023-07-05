@@ -38,6 +38,7 @@ public class Movie extends BaseModel {
     )
     private Set<Genre> genres;
     public Movie(MovieDTO movieDTO){
+        this.setId(movieDTO.getId());
         title = movieDTO.getTitle();
         description = movieDTO.getDescription();
         runtime = movieDTO.getRuntime();

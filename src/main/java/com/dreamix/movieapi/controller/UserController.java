@@ -1,5 +1,6 @@
 package com.dreamix.movieapi.controller;
 
+import com.dreamix.movieapi.converter.UserConverter;
 import com.dreamix.movieapi.dto.UserDTO;
 import com.dreamix.movieapi.model.User;
 import com.dreamix.movieapi.service.UserService;
@@ -14,21 +15,23 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserConverter userConverter;
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable long id){
-        return new UserDTO(userService.getUser(id));
+        return userConverter.convertEntityToDto(userService.getUser(id));
     }
     @GetMapping("/all")
     public List<UserDTO> getAllUsers(){
-        return userService.getAllUsers().stream().map(UserDTO::new).collect(Collectors.toList());
+        return userService.getAllUsers().stream().map(user -> userConverter.convertEntityToDto(user)).collect(Collectors.toList());
     }
     @PostMapping("/add")
-    public UserDTO addRecord(@RequestBody User user){
-        return new UserDTO(userService.addRecord(user));
+    public UserDTO addRecord(@RequestBody UserDTO userDTO){
+        return userConverter.convertEntityToDto(userService.addRecord(userConverter.convertDtoToEntity(userDTO)));
     }
     @PutMapping("/update")
-    public UserDTO updateRecord(@RequestBody User user){
-        return new UserDTO(userService.updateRecord(user));
+    public UserDTO updateRecord(@RequestBody UserDTO userDTO){
+       return userConverter.convertEntityToDto(userService.updateRecord(userConverter.convertDtoToEntity(userDTO)));
     }
     @DeleteMapping("/delete/{id}")
     public void deleteRecord(@PathVariable long id){
