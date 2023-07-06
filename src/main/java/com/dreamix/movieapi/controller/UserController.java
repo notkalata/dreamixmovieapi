@@ -18,6 +18,9 @@ public class UserController {
     private UserConverter userConverter;
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable long id){
+        if(userService.getUser(id) == null){
+            return null;
+        }
         return userConverter.convertEntityToDto(userService.getUser(id));
     }
     @GetMapping("/all")

@@ -18,6 +18,9 @@ public class MovieController {
     private MovieConverter movieConverter;
     @GetMapping("/{id}")
     public MovieDTO getMovie(@PathVariable long id){
+        if(movieService.getMovie(id) == null){
+            return null;
+        }
         return movieConverter.convertEntityToDto(movieService.getMovie(id));
     }
     @GetMapping("/all")
