@@ -2,7 +2,6 @@ package com.dreamix.movieapi.controller;
 
 import com.dreamix.movieapi.converter.UserConverter;
 import com.dreamix.movieapi.dto.UserDTO;
-import com.dreamix.movieapi.model.User;
 import com.dreamix.movieapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,5 @@
 package com.dreamix.movieapi.dto;
 
-import com.dreamix.movieapi.model.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +12,5 @@ public class MovieDTO {
     private String title;
     private String description;
     private int runtime;
-    public MovieDTO(Movie movie){
-        id = movie.getId();
-        title = movie.getTitle();
-        description = movie.getDescription();
-        runtime = movie.getRuntime();
-    }
+    private boolean dto;
 }
