@@ -20,7 +20,7 @@ public class UserConverter {
             mapper.skip(UserDTO::setPassword);
         });
         UserDTO map = modelMapper.map(user, UserDTO.class);
-        map.setFullName(StringUtils.joinWith(" ", user.getFirstName(), user.getLastName()));
+        map.setFullName(user.getFirstName() + " " + user.getLastName());
         return map;
     }
     public User convertDtoToEntity(UserDTO userDTO){
@@ -40,6 +40,9 @@ public class UserConverter {
         if(userDTO.getEmail() == null){
             map.setEmail(existingUser.getEmail());
         }
+        map.setFirstName(userDTO.getFullName().split(" ")[0]);
+        map.setLastName(userDTO.getFullName().split(" ")[1]);
+
         return map;
     }
 }

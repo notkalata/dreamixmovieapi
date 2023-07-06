@@ -12,5 +12,4 @@ public class ActorDTO {
     private String firstName;
     private String lastName;
     private int age;
-    private boolean dto;
 }
