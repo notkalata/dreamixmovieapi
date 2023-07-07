@@ -4,16 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieDTO {
-    private long id;
-    private String title;
+public class ReviewDTO {
+    private Long id;
+    private double rating;
     private String description;
-    private int runtime;
-    private List<ActorDTO> actors;
-    private List<ReviewDTO> reviews;
+    private UserDTO user;
 }

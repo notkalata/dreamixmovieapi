@@ -3,7 +3,6 @@ package com.dreamix.movieapi.converter;
 import com.dreamix.movieapi.dto.UserDTO;
 import com.dreamix.movieapi.model.User;
 import com.dreamix.movieapi.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
