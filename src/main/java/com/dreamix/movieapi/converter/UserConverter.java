@@ -41,7 +41,6 @@ public class UserConverter {
         }
         map.setFirstName(userDTO.getFullName().split(" ")[0]);
         map.setLastName(userDTO.getFullName().split(" ")[1]);
-
         return map;
     }
 }
