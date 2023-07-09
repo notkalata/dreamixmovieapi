@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "genres")
@@ -20,7 +20,7 @@ public class Genre extends BaseModel {
     private String name;
     private String description;
     @ManyToMany(mappedBy = "genres")
-    private Set<Movie> movies;
+    private List<Movie> movies;
     @ManyToMany(mappedBy = "favouriteGenres")
-    private Set<User> users;
+    private List<User> users;
 }

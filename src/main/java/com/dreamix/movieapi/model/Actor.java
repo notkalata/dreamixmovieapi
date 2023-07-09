@@ -1,6 +1,5 @@
 package com.dreamix.movieapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "actors")
@@ -21,7 +20,6 @@ public class Actor extends BaseModel {
     private String firstName;
     private String lastName;
     private int age;
-    @JsonIgnore
     @ManyToMany(mappedBy = "actors")
-    private Set<Movie> movies;
+    private List<Movie> movies;
 }

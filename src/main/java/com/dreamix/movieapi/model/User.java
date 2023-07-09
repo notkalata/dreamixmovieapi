@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -21,12 +21,12 @@ public class User extends BaseModel {
     private String firstName;
     private String lastName;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Review> reviews;
+    private List<Review> reviews;
     @ManyToMany
     @JoinTable(
             name = "favourite_genres",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private Set<Genre> favouriteGenres;
+    private List<Genre> favouriteGenres;
 }
