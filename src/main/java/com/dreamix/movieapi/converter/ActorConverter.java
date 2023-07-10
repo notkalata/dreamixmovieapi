@@ -19,14 +19,16 @@ public class ActorConverter {
         ModelMapper modelMapper = new ModelMapper();
         Actor map = modelMapper.map(actorDTO, Actor.class);
         Actor existingActor = actorService.getActor(actorDTO.getId());
-        if(actorDTO.getFirstName() == null){
-            map.setFirstName(existingActor.getFirstName());
-        }
-        if(actorDTO.getLastName() == null){
-            map.setLastName(existingActor.getLastName());
-        }
-        if(actorDTO.getAge() <= 0){
-            map.setAge(existingActor.getAge());
+        if(existingActor != null){
+            if(actorDTO.getFirstName() == null){
+                map.setFirstName(existingActor.getFirstName());
+            }
+            if(actorDTO.getLastName() == null){
+                map.setLastName(existingActor.getLastName());
+            }
+            if(actorDTO.getAge() <= 0){
+                map.setAge(existingActor.getAge());
+            }
         }
         return map;
     }

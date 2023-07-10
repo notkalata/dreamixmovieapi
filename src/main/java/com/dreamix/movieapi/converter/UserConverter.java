@@ -8,10 +8,14 @@ import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class UserConverter {
     @Autowired
     private UserService userService;
+    @Autowired
+    private GenreConverter genreConverter;
     public UserDTO convertEntityToDto(User user){
         ModelMapper modelMapper = new ModelMapper();
         TypeMap<User, UserDTO> typeMap = modelMapper.createTypeMap(User.class, UserDTO.class);
@@ -26,21 +30,24 @@ public class UserConverter {
         ModelMapper modelMapper = new ModelMapper();
         User map = modelMapper.map(userDTO, User.class);
         User existingUser = userService.getUser(userDTO.getId());
-        if(userDTO.getFullName() == null){
-            map.setFirstName(existingUser.getFirstName());
-            map.setLastName(existingUser.getLastName());
-        }
-        if(userDTO.getUsername() == null){
-            map.setUsername(existingUser.getUsername());
-        }
-        if(userDTO.getPassword() == null){
-            map.setPassword(existingUser.getPassword());
-        }
-        if(userDTO.getEmail() == null){
-            map.setEmail(existingUser.getEmail());
+        if(existingUser != null){
+            if(userDTO.getFullName() == null){
+                map.setFirstName(existingUser.getFirstName());
+                map.setLastName(existingUser.getLastName());
+            }
+            if(userDTO.getUsername() == null){
+                map.setUsername(existingUser.getUsername());
+            }
+            if(userDTO.getPassword() == null){
+                map.setPassword(existingUser.getPassword());
+            }
+            if(userDTO.getEmail() == null){
+                map.setEmail(existingUser.getEmail());
+            }
         }
         map.setFirstName(userDTO.getFullName().split(" ")[0]);
         map.setLastName(userDTO.getFullName().split(" ")[1]);
+        map.setFavouriteGenres(userDTO.getFavouriteGenres().stream().map(genreDTO -> genreConverter.convertDtoToEntity(genreDTO)).collect(Collectors.toList()));
         return map;
     }
 }

@@ -19,11 +19,13 @@ public class GenreConverter {
         ModelMapper modelMapper = new ModelMapper();
         Genre map = modelMapper.map(genreDTO, Genre.class);
         Genre existingGenre = genreService.getGenre(genreDTO.getId());
-        if(genreDTO.getName() == null){
-            map.setName(existingGenre.getName());
-        }
-        if(genreDTO.getDescription() == null){
-            map.setDescription(existingGenre.getDescription());
+        if(existingGenre != null){
+            if(genreDTO.getName() == null){
+                map.setName(existingGenre.getName());
+            }
+            if(genreDTO.getDescription() == null){
+                map.setDescription(existingGenre.getDescription());
+            }
         }
         return map;
     }
