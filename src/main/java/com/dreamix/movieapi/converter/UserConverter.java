@@ -44,10 +44,12 @@ public class UserConverter {
             if(userDTO.getEmail() == null){
                 map.setEmail(existingUser.getEmail());
             }
+            if(userDTO.getFavouriteGenres() == null){
+                map.setFavouriteGenres(existingUser.getFavouriteGenres());
+            }
         }
         map.setFirstName(userDTO.getFullName().split(" ")[0]);
         map.setLastName(userDTO.getFullName().split(" ")[1]);
-        map.setFavouriteGenres(userDTO.getFavouriteGenres().stream().map(genreDTO -> genreConverter.convertDtoToEntity(genreDTO)).collect(Collectors.toList()));
         return map;
     }
 }

@@ -25,6 +25,12 @@ public class MovieConverter {
         if(movie.getReviews() != null) {
             map.setReviews(movie.getReviews().stream().map(review -> reviewConverter.convertEntityToDto(review)).collect(Collectors.toList()));
         }
+        if(movie.getActors() != null){
+            map.setActors(movie.getActors().stream().map(actor -> actorConverter.convertEntityToDto(actor)).collect(Collectors.toList()));
+        }
+        if(movie.getGenres() != null){
+            map.setGenres(movie.getGenres().stream().map(genre -> genreConverter.convertEntityToDto(genre)).collect(Collectors.toList()));
+        }
         return map;
     }
     public Movie convertDtoToEntity(MovieDTO movieDTO){
@@ -51,8 +57,15 @@ public class MovieConverter {
                 map.setGenres(existingMovie.getGenres());
             }
         }
-        map.setActors(movieDTO.getActors().stream().map(actorDTO -> actorConverter.convertDtoToEntity(actorDTO)).collect(Collectors.toList()));
-        map.setGenres(movieDTO.getGenres().stream().map(genreDTO -> genreConverter.convertDtoToEntity(genreDTO)).collect(Collectors.toList()));
+        if(movieDTO.getReviews() != null){
+            map.setReviews(movieDTO.getReviews().stream().map(reviewDTO -> reviewConverter.convertDtoToEntity(reviewDTO)).collect(Collectors.toList()));
+        }
+        if(movieDTO.getActors() != null){
+            map.setActors(movieDTO.getActors().stream().map(actorDTO -> actorConverter.convertDtoToEntity(actorDTO)).collect(Collectors.toList()));
+        }
+        if(movieDTO.getGenres() != null){
+            map.setGenres(movieDTO.getGenres().stream().map(genreDTO -> genreConverter.convertDtoToEntity(genreDTO)).collect(Collectors.toList()));
+        }
         return map;
     }
 }
