@@ -17,7 +17,7 @@ import java.util.List;
 public class Movie extends BaseModel {
     private String title;
     private String description;
-    private int runtime;
+    private Integer runtime;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Review> reviews;
     @ManyToMany
@@ -34,4 +34,24 @@ public class Movie extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<Genre> genres;
+    public void updateFrom(Movie movie){
+        if(this.getTitle() == null){
+            this.setTitle(movie.getTitle());
+        }
+        if(this.getDescription() == null){
+            this.setDescription(movie.getDescription());
+        }
+        if(this.getRuntime() == null){
+            this.setRuntime(movie.getRuntime());
+        }
+        if(this.getReviews() == null){
+            this.setReviews(movie.getReviews());
+        }
+        if(this.getActors() == null){
+            this.setActors(movie.getActors());
+        }
+        if(this.getGenres() == null){
+            this.setGenres(movie.getGenres());
+        }
+    }
 }

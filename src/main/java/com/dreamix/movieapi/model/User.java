@@ -29,4 +29,27 @@ public class User extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<Genre> favouriteGenres;
+    public void updateFrom(User existing) {
+        if(this.username == null){
+            this.setUsername(existing.getUsername());
+        }
+        if(this.password == null){
+            this.setPassword(existing.getPassword());
+        }
+        if(this.email == null){
+            this.setEmail(existing.getEmail());
+        }
+        if(this.firstName == null){
+            this.setFirstName(existing.getFirstName());
+        }
+        if(this.lastName == null){
+            this.setLastName(existing.getLastName());
+        }
+        if(this.getReviews() == null){
+            this.setReviews(existing.getReviews());
+        }
+        if(this.getFavouriteGenres() == null){
+            this.setFavouriteGenres(existing.getFavouriteGenres());
+        }
+    }
 }

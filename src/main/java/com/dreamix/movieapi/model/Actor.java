@@ -19,7 +19,18 @@ import java.util.List;
 public class Actor extends BaseModel {
     private String firstName;
     private String lastName;
-    private int age;
+    private Integer age;
     @ManyToMany(mappedBy = "actors")
     private List<Movie> movies;
+    public void updateFrom(Actor actor){
+        if(this.firstName == null){
+            this.setFirstName(actor.getFirstName());
+        }
+        if(this.lastName == null){
+            this.setLastName(actor.getLastName());
+        }
+        if(this.age == null){
+            this.setAge(actor.getAge());
+        }
+    }
 }

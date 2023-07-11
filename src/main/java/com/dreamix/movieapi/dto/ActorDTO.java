@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ActorDTO {
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
-    private int age;
+    private Integer age;
 }

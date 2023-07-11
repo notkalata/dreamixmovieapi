@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReviewDTO {
     private Long id;
-    private double rating;
+    private Double rating;
     private String description;
     private Long movieId;
     private UserDTO user;

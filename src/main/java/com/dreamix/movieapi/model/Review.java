@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review extends BaseModel {
-    private double rating;
+    private Double rating;
     private String description;
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -25,4 +25,15 @@ public class Review extends BaseModel {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    public void updateFrom(Review review){
+        if(this.rating == null){
+            this.setRating(review.getRating());
+        }
+        if(this.description == null){
+            this.setDescription(review.getDescription());
+        }
+        if(this.user == null){
+            this.setUser(review.getUser());
+        }
+    }
 }

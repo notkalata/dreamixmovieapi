@@ -18,17 +18,9 @@ public class ActorConverter {
     public Actor convertDtoToEntity(ActorDTO actorDTO){
         ModelMapper modelMapper = new ModelMapper();
         Actor map = modelMapper.map(actorDTO, Actor.class);
-        Actor existingActor = actorService.getActor(actorDTO.getId());
-        if(existingActor != null){
-            if(actorDTO.getFirstName() == null){
-                map.setFirstName(existingActor.getFirstName());
-            }
-            if(actorDTO.getLastName() == null){
-                map.setLastName(existingActor.getLastName());
-            }
-            if(actorDTO.getAge() <= 0){
-                map.setAge(existingActor.getAge());
-            }
+        if(actorDTO.getId() != null){
+            Actor existing = actorService.getActor(actorDTO.getId());
+            map.updateFrom(existing);
         }
         return map;
     }

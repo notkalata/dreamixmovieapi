@@ -23,4 +23,12 @@ public class Genre extends BaseModel {
     private List<Movie> movies;
     @ManyToMany(mappedBy = "favouriteGenres")
     private List<User> users;
+    public void updateFrom(Genre genre){
+        if(this.name == null){
+            this.setName(genre.getName());
+        }
+        if(this.description == null){
+            this.setDescription(genre.getDescription());
+        }
+    }
 }
