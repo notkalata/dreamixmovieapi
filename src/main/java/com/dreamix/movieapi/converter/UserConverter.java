@@ -38,8 +38,10 @@ public class UserConverter {
             User existing = userService.getUser(userDTO.getId());
             map.updateFrom(existing);
         }
-        map.setFirstName(userDTO.getFullName().split(" ")[0]);
-        map.setLastName(userDTO.getFullName().split(" ")[1]);
+        if(userDTO.getFullName() != null) {
+            map.setFirstName(userDTO.getFullName().split(" ")[0]);
+            map.setLastName(userDTO.getFullName().split(" ")[1]);
+        }
         return map;
     }
 }

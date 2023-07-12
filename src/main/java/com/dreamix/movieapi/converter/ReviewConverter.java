@@ -35,7 +35,6 @@ public class ReviewConverter {
         Review map = modelMapper.map(reviewDTO, Review.class);
         if(reviewDTO.getId() != null){
             Review existing = reviewService.getReview(reviewDTO.getId());
-            existing.setMovie(movieService.getMovie(reviewDTO.getMovieId()));
             map.updateFrom(existing);
         }
         return map;
