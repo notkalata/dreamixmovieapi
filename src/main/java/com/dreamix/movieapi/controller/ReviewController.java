@@ -2,6 +2,7 @@ package com.dreamix.movieapi.controller;
 
 import com.dreamix.movieapi.converter.ReviewConverter;
 import com.dreamix.movieapi.dto.ReviewDTO;
+import com.dreamix.movieapi.dto.ReviewLiteDTO;
 import com.dreamix.movieapi.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class ReviewController {
     private ReviewService reviewService;
     @Autowired
     private ReviewConverter reviewConverter;
+    // Този метод връща цялата информация за ревю, като зарежда всички списъци.
     @GetMapping("/{id}")
     public ReviewDTO getReview(@PathVariable long id){
         if(reviewService.getReview(id) == null){
@@ -23,9 +25,10 @@ public class ReviewController {
         }
         return reviewConverter.convertEntityToDto(reviewService.getReview(id));
     }
+    // Този метод връща само базова информация за ревю, за да не зарежда всички списъци.
     @GetMapping("/all")
-    public List<ReviewDTO> getAllReviews(){
-        return reviewService.getAllReviews().stream().map(review -> reviewConverter.convertEntityToDto(review)).collect(Collectors.toList());
+    public List<ReviewLiteDTO> getAllReviews(){
+        return reviewService.getAllReviews().stream().map(review -> reviewConverter.convertEntityToLiteDto(review)).collect(Collectors.toList());
     }
     @PostMapping("/add")
     public ReviewDTO addRecord(@RequestBody ReviewDTO reviewDTO){

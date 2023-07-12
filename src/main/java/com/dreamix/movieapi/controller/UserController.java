@@ -2,6 +2,7 @@ package com.dreamix.movieapi.controller;
 
 import com.dreamix.movieapi.converter.UserConverter;
 import com.dreamix.movieapi.dto.UserDTO;
+import com.dreamix.movieapi.dto.UserLiteDTO;
 import com.dreamix.movieapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserConverter userConverter;
+    // Този метод връща цялата информация за потребител, като зарежда всички списъци.
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable long id){
         if(userService.getUser(id) == null){
@@ -23,9 +25,10 @@ public class UserController {
         }
         return userConverter.convertEntityToDto(userService.getUser(id));
     }
+    // Този метод връща само базова информация за потребител, за да не зарежда всички списъци.
     @GetMapping("/all")
-    public List<UserDTO> getAllUsers(){
-        return userService.getAllUsers().stream().map(user -> userConverter.convertEntityToDto(user)).collect(Collectors.toList());
+    public List<UserLiteDTO> getAllUsers(){
+        return userService.getAllUsers().stream().map(user -> userConverter.convertEntityToLiteDto(user)).collect(Collectors.toList());
     }
     @PostMapping("/add")
     public UserDTO addRecord(@RequestBody UserDTO userDTO){

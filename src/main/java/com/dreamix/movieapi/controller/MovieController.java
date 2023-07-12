@@ -2,6 +2,7 @@ package com.dreamix.movieapi.controller;
 
 import com.dreamix.movieapi.converter.MovieConverter;
 import com.dreamix.movieapi.dto.MovieDTO;
+import com.dreamix.movieapi.dto.MovieLiteDTO;
 import com.dreamix.movieapi.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class MovieController {
     private MovieService movieService;
     @Autowired
     private MovieConverter movieConverter;
+    // Този метод връща цялата информация за филм, като зарежда всички списъци.
     @GetMapping("/{id}")
     public MovieDTO getMovie(@PathVariable long id){
         if(movieService.getMovie(id) == null){
@@ -23,9 +25,10 @@ public class MovieController {
         }
         return movieConverter.convertEntityToDto(movieService.getMovie(id));
     }
+    // Този метод връща само базова информация за филм, за да не зарежда всички списъци.
     @GetMapping("/all")
-    public List<MovieDTO> getAllMovies(){
-        return movieService.getAllMovies().stream().map(movie -> movieConverter.convertEntityToDto(movie)).collect(Collectors.toList());
+    public List<MovieLiteDTO> getAllMovies(){
+        return movieService.getAllMovies().stream().map(movie -> movieConverter.convertEntityToLiteDto(movie)).collect(Collectors.toList());
     }
     @PostMapping("/add")
     public MovieDTO addRecord(@RequestBody MovieDTO movieDTO){

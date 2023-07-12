@@ -1,6 +1,7 @@
 package com.dreamix.movieapi.converter;
 
 import com.dreamix.movieapi.dto.ReviewDTO;
+import com.dreamix.movieapi.dto.ReviewLiteDTO;
 import com.dreamix.movieapi.model.Review;
 import com.dreamix.movieapi.service.MovieService;
 import com.dreamix.movieapi.service.ReviewService;
@@ -19,9 +20,16 @@ public class ReviewConverter {
     public ReviewDTO convertEntityToDto(Review review){
         ModelMapper modelMapper = new ModelMapper();
         ReviewDTO map = modelMapper.map(review, ReviewDTO.class);
-        map.setUser(userConverter.convertEntityToDto(review.getUser()));
+        map.setUser(userConverter.convertEntityToLiteDto(review.getUser()));
         return map;
     }
+
+    public ReviewLiteDTO convertEntityToLiteDto(Review review){
+        ModelMapper modelMapper = new ModelMapper();
+        ReviewLiteDTO map = modelMapper.map(review, ReviewLiteDTO.class);
+        return map;
+    }
+
     public Review convertDtoToEntity(ReviewDTO reviewDTO){
         ModelMapper modelMapper = new ModelMapper();
         Review map = modelMapper.map(reviewDTO, Review.class);

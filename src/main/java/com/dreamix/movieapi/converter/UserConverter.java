@@ -1,6 +1,7 @@
 package com.dreamix.movieapi.converter;
 
 import com.dreamix.movieapi.dto.UserDTO;
+import com.dreamix.movieapi.dto.UserLiteDTO;
 import com.dreamix.movieapi.model.User;
 import com.dreamix.movieapi.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,14 @@ public class UserConverter {
         map.setFullName(user.getFirstName() + " " + user.getLastName());
         return map;
     }
+
+    public UserLiteDTO convertEntityToLiteDto(User user){
+        ModelMapper modelMapper = new ModelMapper();
+        UserLiteDTO map = modelMapper.map(user, UserLiteDTO.class);
+        map.setFullName(user.getFirstName() + " " + user.getLastName());
+        return map;
+    }
+
     public User convertDtoToEntity(UserDTO userDTO){
         ModelMapper modelMapper = new ModelMapper();
         User map = modelMapper.map(userDTO, User.class);
@@ -29,6 +38,8 @@ public class UserConverter {
             User existing = userService.getUser(userDTO.getId());
             map.updateFrom(existing);
         }
+        map.setFirstName(userDTO.getFullName().split(" ")[0]);
+        map.setLastName(userDTO.getFullName().split(" ")[1]);
         return map;
     }
 }
