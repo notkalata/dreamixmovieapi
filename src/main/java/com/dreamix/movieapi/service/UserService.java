@@ -5,6 +5,7 @@ import com.dreamix.movieapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -25,5 +26,8 @@ public class UserService {
     }
     public void deleteRecord(long id){
         userRepository.delete(id);
+    }
+    public List<User> filterUsers(HashMap<String, Object> filter){
+        return userRepository.filterByMap(filter);
     }
 }

@@ -6,6 +6,7 @@ import com.dreamix.movieapi.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -16,7 +17,7 @@ public class MovieService {
         return movieRepository.findById(id);
     }
     public List<Movie> getAllMovies(){
-            return movieRepository.findAll();
+        return movieRepository.findAll();
     }
     public Movie addRecord(Movie movie){
         return movieRepository.create(movie);
@@ -26,5 +27,8 @@ public class MovieService {
     }
     public void deleteRecord(long id){
         movieRepository.delete(id);
+    }
+    public List<Movie> filterMovies(HashMap<String, Object> filter){
+        return movieRepository.filterByMap(filter);
     }
 }

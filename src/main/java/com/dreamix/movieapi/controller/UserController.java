@@ -7,6 +7,7 @@ import com.dreamix.movieapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +42,9 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public void deleteRecord(@PathVariable long id){
         userService.deleteRecord(id);
+    }
+    @GetMapping("/filter")
+    public List<UserLiteDTO> filterUsers(@RequestBody HashMap<String, Object> filter){
+        return userService.filterUsers(filter).stream().map(user -> userConverter.convertEntityToLiteDto(user)).collect(Collectors.toList());
     }
 }

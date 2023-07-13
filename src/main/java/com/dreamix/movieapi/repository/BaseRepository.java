@@ -5,13 +5,15 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
 public abstract class BaseRepository<T> {
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
     public abstract Class<T> getEntityClass();
+    public abstract List<T> filterByMap(HashMap<String, Object> filter);
     public T findById(long id){
         return entityManager.find(getEntityClass(), id);
     }

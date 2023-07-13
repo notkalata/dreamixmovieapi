@@ -7,6 +7,7 @@ import com.dreamix.movieapi.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +42,9 @@ public class MovieController {
     @DeleteMapping("/delete/{id}")
     public void deleteRecord(@PathVariable long id){
         movieService.deleteRecord(id);
+    }
+    @GetMapping("/filter")
+    public List<MovieLiteDTO> filterMovies(@RequestBody HashMap<String, Object> filter){
+        return movieService.filterMovies(filter).stream().map(movie -> movieConverter.convertEntityToLiteDto(movie)).collect(Collectors.toList());
     }
 }
