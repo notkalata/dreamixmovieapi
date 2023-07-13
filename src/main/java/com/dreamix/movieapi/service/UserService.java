@@ -27,7 +27,4 @@ public class UserService {
     public void deleteRecord(long id){
         userRepository.delete(id);
     }
-    public List<User> filterUsers(HashMap<String, Object> filter){
-        return userRepository.filterByMap(filter);
-    }
 }
