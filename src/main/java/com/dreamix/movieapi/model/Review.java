@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reviews")
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 public class Review extends BaseModel {
     private Double rating;
     private String description;
+    private LocalDateTime writtenOn;
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
@@ -31,6 +33,9 @@ public class Review extends BaseModel {
         }
         if(this.description == null){
             this.setDescription(review.getDescription());
+        }
+        if(this.writtenOn == null){
+            this.setWrittenOn(review.getWrittenOn());
         }
         if(this.user == null){
             this.setUser(review.getUser());

@@ -12,4 +12,5 @@ public class MovieLiteDTO {
     private String title;
     private String description;
     private Integer runtime;
+    private String releaseDate;
 }

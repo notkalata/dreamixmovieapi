@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,7 @@ public class Movie extends BaseModel {
     private String title;
     private String description;
     private Integer runtime;
+    private LocalDate releaseDate;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Review> reviews;
     @ManyToMany
@@ -43,6 +45,9 @@ public class Movie extends BaseModel {
         }
         if(this.getRuntime() == null){
             this.setRuntime(movie.getRuntime());
+        }
+        if(this.getReleaseDate() == null){
+            this.setReleaseDate(movie.getReleaseDate());
         }
         if(this.getReviews() == null){
             this.setReviews(movie.getReviews());

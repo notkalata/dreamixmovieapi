@@ -12,6 +12,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 @Repository
@@ -31,6 +33,11 @@ public abstract class BaseRepository<T> {
                     break;
                 case "between":
                     predicates.add(criteriaBuilder.between(root.get(filter.getName()), (int) filter.getValue1(), (int) filter.getValue2()));
+                    break;
+                case "date-between":
+                    predicates.add(criteriaBuilder.between(root.get(filter.getName()),
+                            LocalDate.parse(filter.getValue1().toString(), DateTimeFormatter.ofPattern("d/MM/yyyy")),
+                            LocalDate.parse(filter.getValue2().toString(), DateTimeFormatter.ofPattern("d/MM/yyyy"))));
                     break;
                 case "more":
                     predicates.add(criteriaBuilder.ge(root.get(filter.getName()), (int) filter.getValue1()));

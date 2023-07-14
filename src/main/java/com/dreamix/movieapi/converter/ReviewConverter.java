@@ -3,11 +3,13 @@ package com.dreamix.movieapi.converter;
 import com.dreamix.movieapi.dto.ReviewDTO;
 import com.dreamix.movieapi.dto.ReviewLiteDTO;
 import com.dreamix.movieapi.model.Review;
-import com.dreamix.movieapi.service.MovieService;
 import com.dreamix.movieapi.service.ReviewService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class ReviewConverter {
@@ -15,18 +17,19 @@ public class ReviewConverter {
     private ReviewService reviewService;
     @Autowired
     private UserConverter userConverter;
-    @Autowired
-    private MovieService movieService;
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm:ss");
     public ReviewDTO convertEntityToDto(Review review){
         ModelMapper modelMapper = new ModelMapper();
         ReviewDTO map = modelMapper.map(review, ReviewDTO.class);
         map.setUser(userConverter.convertEntityToLiteDto(review.getUser()));
+        map.setWrittenOn(dateTimeFormatter.format(review.getWrittenOn()));
         return map;
     }
 
     public ReviewLiteDTO convertEntityToLiteDto(Review review){
         ModelMapper modelMapper = new ModelMapper();
         ReviewLiteDTO map = modelMapper.map(review, ReviewLiteDTO.class);
+        map.setWrittenOn(dateTimeFormatter.format(review.getWrittenOn()));
         return map;
     }
 
@@ -37,6 +40,7 @@ public class ReviewConverter {
             Review existing = reviewService.getReview(reviewDTO.getId());
             map.updateFrom(existing);
         }
+        map.setWrittenOn(LocalDateTime.now());
         return map;
     }
 }
