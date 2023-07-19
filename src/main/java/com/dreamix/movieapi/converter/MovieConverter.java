@@ -19,31 +19,44 @@ public class MovieConverter {
     @Autowired
     private ReviewConverter reviewConverter;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    private final ModelMapper modelMapper = new ModelMapper();
     public MovieDTO convertEntityToDto(Movie movie){
-        ModelMapper modelMapper = new ModelMapper();
+        if(movie == null){
+            return null;
+        }
         MovieDTO map = modelMapper.map(movie, MovieDTO.class);
         if(movie.getReviews() != null){
             map.setReviews(movie.getReviews().stream().map(review -> reviewConverter.convertEntityToLiteDto(review)).collect(Collectors.toList()));
         }
-        map.setReleaseDate(movie.getReleaseDate().format(dateTimeFormatter));
+        if(movie.getReleaseDate() != null){
+            map.setReleaseDate(movie.getReleaseDate().format(dateTimeFormatter));
+        }
         return map;
     }
 
     public MovieLiteDTO convertEntityToLiteDto(Movie movie){
-        ModelMapper modelMapper = new ModelMapper();
+        if(movie == null){
+            return null;
+        }
         MovieLiteDTO map = modelMapper.map(movie, MovieLiteDTO.class);
-        map.setReleaseDate(movie.getReleaseDate().format(dateTimeFormatter));
+        if(movie.getReleaseDate() != null){
+            map.setReleaseDate(movie.getReleaseDate().format(dateTimeFormatter));
+        }
         return map;
     }
 
     public Movie convertDtoToEntity(MovieDTO movieDTO){
-        ModelMapper modelMapper = new ModelMapper();
+        if(movieDTO == null){
+            return null;
+        }
         Movie map = modelMapper.map(movieDTO, Movie.class);
         if(movieDTO.getId() != null){
             Movie existing = movieService.getMovie(movieDTO.getId());
             map.updateFrom(existing);
         }
-        map.setReleaseDate(LocalDate.parse(movieDTO.getReleaseDate(), dateTimeFormatter));
+        if(movieDTO.getReleaseDate() != null) {
+            map.setReleaseDate(LocalDate.parse(movieDTO.getReleaseDate(), dateTimeFormatter));
+        }
         return map;
     }
 }
