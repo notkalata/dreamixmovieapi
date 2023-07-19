@@ -46,7 +46,7 @@ public class UserConverterTests {
         UserDTO userDTO = new UserDTO(null, null, "notkalata",
                 "kaloyan1", "kaloyan@email.com", null);
         User user = new User("notkalata", "kaloyan1", "kaloyan@email.com",
-                "First", "Last", null, null);
+                null, null, null, null);
         User expectedUser = userConverter.convertDtoToEntity(userDTO);
         assertEquals(user, expectedUser);
     }

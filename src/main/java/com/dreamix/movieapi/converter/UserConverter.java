@@ -14,11 +14,11 @@ public class UserConverter {
     @Autowired
     private UserService userService;
     private final ModelMapper modelMapper = new ModelMapper();
+    private final TypeMap<User, UserDTO> typeMap = modelMapper.createTypeMap(User.class, UserDTO.class);
     public UserDTO convertEntityToDto(User user){
-        if(user == null){
+        if(user == null) {
             return null;
         }
-        TypeMap<User, UserDTO> typeMap = modelMapper.createTypeMap(User.class, UserDTO.class);
         typeMap.addMappings(mapper -> {
             mapper.skip(UserDTO::setPassword);
         });
@@ -48,10 +48,6 @@ public class UserConverter {
         if(userDTO.getFullName() != null) {
             map.setFirstName(userDTO.getFullName().split(" ")[0]);
             map.setLastName(userDTO.getFullName().split(" ")[1]);
-        }
-        else{
-            map.setFirstName("First");
-            map.setLastName("Last");
         }
         return map;
     }
