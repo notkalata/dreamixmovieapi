@@ -13,8 +13,11 @@ import org.springframework.stereotype.Component;
 public class UserConverter {
     @Autowired
     private UserService userService;
+    private final ModelMapper modelMapper = new ModelMapper();
     public UserDTO convertEntityToDto(User user){
-        ModelMapper modelMapper = new ModelMapper();
+        if(user == null){
+            return null;
+        }
         TypeMap<User, UserDTO> typeMap = modelMapper.createTypeMap(User.class, UserDTO.class);
         typeMap.addMappings(mapper -> {
             mapper.skip(UserDTO::setPassword);
@@ -25,14 +28,18 @@ public class UserConverter {
     }
 
     public UserLiteDTO convertEntityToLiteDto(User user){
-        ModelMapper modelMapper = new ModelMapper();
+        if(user == null){
+            return null;
+        }
         UserLiteDTO map = modelMapper.map(user, UserLiteDTO.class);
         map.setFullName(user.getFirstName() + " " + user.getLastName());
         return map;
     }
 
     public User convertDtoToEntity(UserDTO userDTO){
-        ModelMapper modelMapper = new ModelMapper();
+        if(userDTO == null){
+            return null;
+        }
         User map = modelMapper.map(userDTO, User.class);
         if(userDTO.getId() != null){
             User existing = userService.getUser(userDTO.getId());
@@ -41,6 +48,10 @@ public class UserConverter {
         if(userDTO.getFullName() != null) {
             map.setFirstName(userDTO.getFullName().split(" ")[0]);
             map.setLastName(userDTO.getFullName().split(" ")[1]);
+        }
+        else{
+            map.setFirstName("First");
+            map.setLastName("Last");
         }
         return map;
     }
