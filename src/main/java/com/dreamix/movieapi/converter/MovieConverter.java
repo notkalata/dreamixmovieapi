@@ -8,12 +8,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class MovieConverter {
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     private MovieService movieService;
     @Autowired
@@ -31,6 +36,13 @@ public class MovieConverter {
         if(movie.getReleaseDate() != null){
             map.setReleaseDate(movie.getReleaseDate().format(dateTimeFormatter));
         }
+        List reviewsQuery = entityManager.createQuery("SELECT r.rating FROM Review r WHERE r.movie.id = " + movie.getId()).getResultList();
+        double totalRating = 0;
+        for(Object rating : reviewsQuery){
+            totalRating += (Double) rating;
+        }
+        map.setRating(totalRating / reviewsQuery.size());
+        map.setTotalReviews(reviewsQuery.size());
         return map;
     }
 

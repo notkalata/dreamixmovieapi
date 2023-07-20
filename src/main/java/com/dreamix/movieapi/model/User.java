@@ -3,6 +3,10 @@ package com.dreamix.movieapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -12,14 +16,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseModel {
-    @Column(nullable = false)
+    @NotNull(message = "Username can't be null.")
+    @Size(min = 5, max = 20, message = "Username must be between 5 and 20 characters.")
     private String username;
+    @NotBlank(message = "Password can't be empty!")
     private String password;
-    @Column(nullable = false)
+    @Email(message = "Email should be valid.")
     private String email;
-    @Column(nullable = false)
+    @NotNull(message = "First name can't be null.")
+    @Size(max = 50, message = "First name can't be more than 50 characters.")
     private String firstName;
-    @Column(nullable = false)
+    @NotNull(message = "Last name can't be null.")
+    @Size(max = 50, message = "Last name can't be more than 50 characters.")
     private String lastName;
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;

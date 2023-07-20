@@ -188,12 +188,11 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>BIGINT|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(2)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="174" parent="165" name="AGE">
       <DasType>INTEGER|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="175" parent="165" name="FIRST_NAME">
@@ -253,7 +252,7 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>BIGINT|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(3)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="186" parent="167" name="DESCRIPTION">
@@ -281,191 +280,200 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>BIGINT|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(10)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="191" parent="168" name="DESCRIPTION">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="192" parent="168" name="RUNTIME">
-      <DasType>INTEGER|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="192" parent="168" name="RELEASE_DATE">
+      <DasType>DATE|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="193" parent="168" name="TITLE">
-      <DasType>CHARACTER VARYING(255)|0s</DasType>
+    <column id="193" parent="168" name="RUNTIME">
+      <DasType>INTEGER|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="194" parent="168" name="PRIMARY_KEY_8">
+    <column id="194" parent="168" name="TITLE">
+      <DasType>CHARACTER VARYING(255)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="195" parent="168" name="PRIMARY_KEY_8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="195" parent="168" name="CONSTRAINT_8">
+    <key id="196" parent="168" name="CONSTRAINT_8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="196" parent="169" name="MOVIE_ID">
+    <column id="197" parent="169" name="MOVIE_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="197" parent="169" name="ACTOR_ID">
+    <column id="198" parent="169" name="ACTOR_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="198" parent="169" name="FKS4RLT03TDF55RWSO4UYRWM0OQ">
+    <foreign-key id="199" parent="169" name="FKS4RLT03TDF55RWSO4UYRWM0OQ">
       <ColNames>MOVIE_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_8</RefKeyName>
       <RefTableName>MOVIES</RefTableName>
     </foreign-key>
-    <foreign-key id="199" parent="169" name="FK7SVT4Y6P0F9GPJY10AWTUBP02">
+    <foreign-key id="200" parent="169" name="FK7SVT4Y6P0F9GPJY10AWTUBP02">
       <ColNames>ACTOR_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_7</RefKeyName>
       <RefTableName>ACTORS</RefTableName>
     </foreign-key>
-    <index id="200" parent="169" name="FKS4RLT03TDF55RWSO4UYRWM0OQ_INDEX_A">
+    <index id="201" parent="169" name="FKS4RLT03TDF55RWSO4UYRWM0OQ_INDEX_A">
       <ColNames>MOVIE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="201" parent="169" name="FK7SVT4Y6P0F9GPJY10AWTUBP02_INDEX_A">
+    <index id="202" parent="169" name="FK7SVT4Y6P0F9GPJY10AWTUBP02_INDEX_A">
       <ColNames>ACTOR_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <column id="202" parent="170" name="MOVIE_ID">
+    <column id="203" parent="170" name="MOVIE_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="203" parent="170" name="GENRE_ID">
+    <column id="204" parent="170" name="GENRE_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="204" parent="170" name="FK4AK9SVW913JBLKFGRU84H2PHD">
+    <foreign-key id="205" parent="170" name="FK4AK9SVW913JBLKFGRU84H2PHD">
       <ColNames>MOVIE_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_8</RefKeyName>
       <RefTableName>MOVIES</RefTableName>
     </foreign-key>
-    <foreign-key id="205" parent="170" name="FKNFPJUAK0XIQPCA3GJKWRIXIIG">
+    <foreign-key id="206" parent="170" name="FKNFPJUAK0XIQPCA3GJKWRIXIIG">
       <ColNames>GENRE_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_7D</RefKeyName>
       <RefTableName>GENRES</RefTableName>
     </foreign-key>
-    <index id="206" parent="170" name="FK4AK9SVW913JBLKFGRU84H2PHD_INDEX_B">
+    <index id="207" parent="170" name="FK4AK9SVW913JBLKFGRU84H2PHD_INDEX_B">
       <ColNames>MOVIE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="207" parent="170" name="FKNFPJUAK0XIQPCA3GJKWRIXIIG_INDEX_B">
+    <index id="208" parent="170" name="FKNFPJUAK0XIQPCA3GJKWRIXIIG_INDEX_B">
       <ColNames>GENRE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <column id="208" parent="171" name="ID">
+    <column id="209" parent="171" name="ID">
       <ColumnKind>generated-stored</ColumnKind>
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>BIGINT|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(5)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
-    <column id="209" parent="171" name="DESCRIPTION">
+    <column id="210" parent="171" name="DESCRIPTION">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="210" parent="171" name="RATING">
+    <column id="211" parent="171" name="RATING">
       <DasType>DOUBLE PRECISION|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="211" parent="171" name="MOVIE_ID">
-      <DasType>BIGINT|0s</DasType>
+    <column id="212" parent="171" name="WRITTEN_ON">
+      <DasType>TIMESTAMP|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="212" parent="171" name="USER_ID">
+    <column id="213" parent="171" name="MOVIE_ID">
       <DasType>BIGINT|0s</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="213" parent="171" name="FK87TLQYA0RQ8IJFJSCLDPVVDYQ">
+    <column id="214" parent="171" name="USER_ID">
+      <DasType>BIGINT|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="215" parent="171" name="FK87TLQYA0RQ8IJFJSCLDPVVDYQ">
       <ColNames>MOVIE_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_8</RefKeyName>
       <RefTableName>MOVIES</RefTableName>
     </foreign-key>
-    <foreign-key id="214" parent="171" name="FKCGY7QJC1R99DP117Y9EN6LXYE">
+    <foreign-key id="216" parent="171" name="FKCGY7QJC1R99DP117Y9EN6LXYE">
       <ColNames>USER_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <index id="215" parent="171" name="PRIMARY_KEY_6">
+    <index id="217" parent="171" name="PRIMARY_KEY_6">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="216" parent="171" name="FK87TLQYA0RQ8IJFJSCLDPVVDYQ_INDEX_6">
+    <index id="218" parent="171" name="FK87TLQYA0RQ8IJFJSCLDPVVDYQ_INDEX_6">
       <ColNames>MOVIE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="217" parent="171" name="FKCGY7QJC1R99DP117Y9EN6LXYE_INDEX_6">
+    <index id="219" parent="171" name="FKCGY7QJC1R99DP117Y9EN6LXYE_INDEX_6">
       <ColNames>USER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="218" parent="171" name="CONSTRAINT_6">
+    <key id="220" parent="171" name="CONSTRAINT_6">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="219" parent="172" name="ID">
+    <column id="221" parent="172" name="ID">
       <ColumnKind>generated-stored</ColumnKind>
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>BIGINT|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(5)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
-    <column id="220" parent="172" name="EMAIL">
+    <column id="222" parent="172" name="EMAIL">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="221" parent="172" name="FIRST_NAME">
+    <column id="223" parent="172" name="FIRST_NAME">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="222" parent="172" name="LAST_NAME">
+    <column id="224" parent="172" name="LAST_NAME">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="223" parent="172" name="PASSWORD">
+    <column id="225" parent="172" name="PASSWORD">
       <DasType>CHARACTER VARYING(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="224" parent="172" name="USERNAME">
-      <DasType>CHARACTER VARYING(255)|0s</DasType>
+    <column id="226" parent="172" name="USERNAME">
+      <DasType>CHARACTER VARYING(20)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="225" parent="172" name="PRIMARY_KEY_4">
+    <index id="227" parent="172" name="PRIMARY_KEY_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="226" parent="172" name="CONSTRAINT_4">
+    <key id="228" parent="172" name="CONSTRAINT_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>

@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,8 +19,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Movie extends BaseModel {
+    @NotNull(message = "Title can't be null.")
+    @Size(max = 50, message = "Title can't be more than 50 characters.")
     private String title;
+    @Size(max = 500, message = "Description can't be more than 500 characters.")
     private String description;
+    @NotNull(message = "Runtime can't be null.")
+    @Min(value = 0, message = "Runtime can't be less than 0")
     private Integer runtime;
     private LocalDate releaseDate;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)

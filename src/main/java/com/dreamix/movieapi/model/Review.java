@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,7 +22,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review extends BaseModel {
+    @NotNull(message = "Rating can't be null.")
+    @Min(value = 1, message = "Rating can't be less than 1!")
+    @Max(value = 10, message = "Rating can't be more than 10!")
     private Double rating;
+    @Size(max = 200, message = "Description can't be more than 200 characters.")
     private String description;
     private LocalDateTime writtenOn;
     @ManyToOne

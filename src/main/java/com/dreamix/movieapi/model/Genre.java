@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -17,7 +19,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Genre extends BaseModel {
+    @NotNull(message = "Name can't be null.")
+    @Size(max = 50, message = "Name can't be more than 50 characters.")
     private String name;
+    @Size(max = 200, message = "Description can't be more than 200 characters.")
     private String description;
     @ManyToMany(mappedBy = "genres")
     private List<Movie> movies;

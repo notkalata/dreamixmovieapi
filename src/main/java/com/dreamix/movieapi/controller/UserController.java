@@ -7,6 +7,7 @@ import com.dreamix.movieapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class UserController {
         return userService.getAllUsers().stream().map(user -> userConverter.convertEntityToLiteDto(user)).collect(Collectors.toList());
     }
     @PostMapping("/add")
-    public UserDTO addRecord(@RequestBody UserDTO userDTO){
+    public UserDTO addRecord(@RequestBody @Valid UserDTO userDTO){
         return userConverter.convertEntityToDto(userService.addRecord(userConverter.convertDtoToEntity(userDTO)));
     }
     @PutMapping("/update")
